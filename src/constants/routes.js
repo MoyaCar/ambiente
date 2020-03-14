@@ -1,0 +1,7 @@
+export const LANDING = '/'
+export const ENCUESTA = '/encuesta'
+export const SIGN_IN = '/signin'
+export const SIGN_IP = '/sinup'
+export const ADMIN = '/admin'
+export const PASWORD_FORGET = '/psw_forget'
+export const ACCOUNT = '/account'

@@ -1,25 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, 
+        Route,
+      } from 'react-router-dom'
+import Navigation from './Navigation'
+import LandingPage from '../Landing';
+import SignUpPage from '../SignUp';
+import SignInPage from '../SignIn';
+import PasswordForgetPage from '../PasswordForget';
+import Encuesta from '../Encuesta';
+import AccountPage from '../Account';
+import AdminPage from '../Admin';
+
+import * as ROUTES from './constants/routes';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <Router>
+    <Navigation/>
+
+    <hr/>
+    <Route exact path={ROUTES.LANDING} component={LandingPage} />
+    <Route path={ROUTES.SIGN_IP} component={SignUpPage} />
+    <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+    <Route path={ROUTES.PASWORD_FORGET} component={PasswordForgetPage} />
+    <Route path={ROUTES.ENCUESTA} component={Encuesta} />
+    <Route path={ROUTES.ADMIN} component={AdminPage} />
+    <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+  </Router>
   );
 }
 
