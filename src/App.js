@@ -3,13 +3,13 @@ import { BrowserRouter as Router,
         Route,
       } from 'react-router-dom'
 import Navigation from './Navigation'
-import LandingPage from '../Landing';
-import SignUpPage from '../SignUp';
-import SignInPage from '../SignIn';
-import PasswordForgetPage from '../PasswordForget';
-import Encuesta from '../Encuesta';
-import AccountPage from '../Account';
-import AdminPage from '../Admin';
+import LandingPage from './Componentes/Landing/';
+import SignUpPage from './Componentes/SignUp/';
+import SignInPage from './Componentes/SignIn/';
+import PasswordForgetPage from './Componentes/PasswordForget/';
+import Encuesta from './Componentes/Encuesta/';
+import AccountPage from './Componentes/Account/';
+import AdminPage from './Componentes/Admin/';
 
 import * as ROUTES from './constants/routes';
 
