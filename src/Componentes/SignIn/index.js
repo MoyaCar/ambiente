@@ -3,8 +3,8 @@ import { withRouter } from  'react-router-dom';
 import { compose } from 'recompose';
 
 import {SignUpLink} from '../SignUp';
-import {withFirebase} from '../Firebase'
-import * as ROUTES from '../../constants/routes'
+import {withFirebase} from '../Firebase';
+import * as ROUTES from '../../constants/routes';
 
 const SignInPage = () => (
   <div>
@@ -20,17 +20,28 @@ const SignInFormBase = props => {
   const [error, setError] = useState(null)
 
   const onSubmit = e => {
-    e.preventDefault()
-    props.history.push(ROUTES.ENCUESTA)
+    props.firebase
+    .doSignInWithEmailAndPassword(email, password)
+    .then(()=>{
+      setEmail('');
+      setPassword('');
+      props.history.push(ROUTES.ENCUESTA);
+    }).catch( error => setError(error))
+
+    e.preventDefault()    
   }
+
+  const isInvalid = email === '' ||
+                    password === ''
+
   return (
     <div>
       <form onSubmit={onSubmit}>
         <input type='text' value={email} placeholder="Email" onChange={ e => setEmail(e.currentTarget.value)} />
         <input type='text' value={password} placeholder='Contraseña' onChange={ e => setPassword(e.currentTarget.value) }/>
-        <button type='submit'>Ingresar</button>
+        <button type='submit' disabled={isInvalid}> Ingresar </button>
+        {error && <p>{error.message}</p>}
       </form>
-      {email}  {password}
     </div>
   )
 }
@@ -40,4 +51,5 @@ const SignInForm = compose(
   withFirebase
 )(SignInFormBase);
 
-export default SignInPage
+export default SignInPage;
+export {SignInForm};

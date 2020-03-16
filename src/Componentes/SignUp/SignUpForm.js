@@ -41,22 +41,27 @@ const SignUpFormBase = (props) => {
           value={userName}
           onChange={(e) => setUserName(e.currentTarget.value)}
           placeholder='Nombre de Usuario'/>
+
           <input 
           type='text'
           value={email}
           onChange={(e) => setEmail(e.currentTarget.value)}
           placeholder='Email'/>
+
           <input 
           type='text'
           value={password1}
           onChange={(e) => setPassword1(e.currentTarget.value)}
           placeholder='Contraseña'/>
+
           <input 
           type='text'
           value={password2}
           onChange={(e) => setPassword2(e.currentTarget.value)}
           placeholder='Repita Contraseña'/>
+
           <button type='submit' disabled={isInvalid}>Registrarse</button>
+          
           {error && <p>{error.message}</p>}
       </form>
     </div>
