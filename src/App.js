@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, 
-        Route,
-      } from 'react-router-dom'
+Route,} from 'react-router-dom';
+import * as ROUTES from './constants/routes';
+import { withFirebase } from './Componentes/Firebase';
+
 import Navigation from './Navigation'
 import LandingPage from './Componentes/Landing/';
 import SignUpPage from './Componentes/SignUp/';
@@ -11,12 +13,24 @@ import Encuesta from './Componentes/Encuesta/';
 import AccountPage from './Componentes/Account/';
 import AdminPage from './Componentes/Admin/';
 
-import * as ROUTES from './constants/routes';
 
-function App() {
+
+function App(props) {
+  const [authUser, setAuthUser] = useState(null)
+
+  useEffect(() => {
+    const listener = props.firebase.auth.onAuthStateChanged( authUserf => {
+      authUserf
+      ? setAuthUser(authUserf)
+      : setAuthUser(null)
+    })
+    return () => {
+      listener();
+    }
+  }, [])
   return (
   <Router>
-    <Navigation/>
+    <Navigation authUser={authUser}/>
 
     <hr/>
     <Route exact path={ROUTES.LANDING} component={LandingPage} />
@@ -30,4 +44,4 @@ function App() {
   );
 }
 
-export default App;
+export default withFirebase(App);
