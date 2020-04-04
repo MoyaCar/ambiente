@@ -3,6 +3,8 @@ import { BrowserRouter as Router,
 Route,} from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import { withFirebase } from './Componentes/Firebase';
+import { AuthUserContext } from './Componentes/Session';
+import { withAuthentication } from './Componentes/Session';
 
 import Navigation from './Navigation'
 import LandingPage from './Componentes/Landing/';
@@ -16,32 +18,21 @@ import AdminPage from './Componentes/Admin/';
 
 
 function App(props) {
-  const [authUser, setAuthUser] = useState(null)
+    
+  return (   
+      <Router>
+        <Navigation />
 
-  useEffect(() => {
-    const listener = props.firebase.auth.onAuthStateChanged( authUserf => {
-      authUserf
-      ? setAuthUser(authUserf)
-      : setAuthUser(null)
-    })
-    return () => {
-      listener();
-    }
-  }, [])
-  return (
-  <Router>
-    <Navigation authUser={authUser}/>
-
-    <hr/>
-    <Route exact path={ROUTES.LANDING} component={LandingPage} />
-    <Route path={ROUTES.SIGN_IP} component={SignUpPage} />
-    <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-    <Route path={ROUTES.PASWORD_FORGET} component={PasswordForgetPage} />
-    <Route path={ROUTES.ENCUESTA} component={Encuesta} />
-    <Route path={ROUTES.ADMIN} component={AdminPage} />
-    <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-  </Router>
+        <hr/>
+        <Route exact path={ROUTES.LANDING} component={LandingPage} />
+        <Route path={ROUTES.SIGN_IP} component={SignUpPage} />
+        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+        <Route path={ROUTES.PASWORD_FORGET} component={PasswordForgetPage} />
+        <Route path={ROUTES.ENCUESTA} component={Encuesta} />
+        <Route path={ROUTES.ADMIN} component={AdminPage} />
+        <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+      </Router>
   );
 }
 
-export default withFirebase(App);
+export default withAuthentication(App);
