@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, 
-Route,} from 'react-router-dom';
+import { BrowserRouter as Router, Route, } from 'react-router-dom';
 import * as ROUTES from './constants/routes';
 import { withFirebase } from './Componentes/Firebase';
 import { AuthUserContext } from './Componentes/Session';
@@ -18,20 +17,20 @@ import AdminPage from './Componentes/Admin/';
 
 
 function App(props) {
-    
-  return (   
-      <Router>
-        <Navigation />
 
-        <hr/>
-        <Route exact path={ROUTES.LANDING} component={LandingPage} />
-        <Route path={ROUTES.SIGN_IP} component={SignUpPage} />
-        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-        <Route path={ROUTES.PASWORD_FORGET} component={PasswordForgetPage} />
-        <Route path={ROUTES.ENCUESTA} component={Encuesta} />
-        <Route path={ROUTES.ADMIN} component={AdminPage} />
-        <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-      </Router>
+  return (
+    <Router>
+      <Navigation />
+
+      <hr />
+      <Route exact path={ROUTES.LANDING} component={LandingPage} />
+      <Route path={ROUTES.SIGN_IP} component={SignUpPage} />
+      <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+      <Route path={ROUTES.PASWORD_FORGET} component={PasswordForgetPage} />
+      <Route path={ROUTES.ENCUESTA} component={Encuesta} />
+      <Route path={ROUTES.ADMIN} component={AdminPage} />
+      <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+    </Router>
   );
 }
 

@@ -16,6 +16,16 @@ const SignUpFormBase = (props) => {
   const onSubmit = (e) => {
     props.firebase
     .doCreateUserWithEmailAndPassword(email, password1)
+    .then((authUser) => {
+      return props.firebase
+      .user(authUser.user.uid)
+      .set({
+        userName,
+        email,
+      })
+    }
+
+    )
     .then(()=>{
       setUserName('');
       setEmail('');
