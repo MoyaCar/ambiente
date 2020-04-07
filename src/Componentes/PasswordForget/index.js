@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { withFirebase } from '../Firebase'
@@ -17,9 +17,9 @@ const RecuperarPaswordForm = (props) => {
   const isInvalid = email === ''
 
   const onSubmit = event => {
-    const email = email
+    const correo = email
     props.firebase
-      .doPasswordReset(email)
+      .doPasswordReset(correo)//ojo con esto, puede ser un problema
       .then(
         () => setEmail('')
       )
@@ -27,7 +27,7 @@ const RecuperarPaswordForm = (props) => {
     event.preventDefault()
   }
 
-  
+
   return (
     <div>
       <form onSubmit={onSubmit}>

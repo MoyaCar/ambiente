@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import AuthUserContext from './context'
-import { whithFirebase, withFirebase } from '../Firebase'
+import { withFirebase } from '../Firebase' //ojo que toquetee aca
 
 const withAuthentication = Component => {
   const WithAuthentication = props => {

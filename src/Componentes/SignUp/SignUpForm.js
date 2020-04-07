@@ -39,9 +39,9 @@ const SignUpFormBase = (props) => {
   }
 
   const isInvalid = password1 !== password2 ||
-              userName == '' || 
-              password1 == '' ||
-              email == '';
+              userName === '' || 
+              password1 === '' ||
+              email === '';
 
   return (
     <div>

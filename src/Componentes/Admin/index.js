@@ -16,6 +16,7 @@ function useObtenerUsuarios() {
       snapshot => {
         const nuevosEmpleados = snapshot.docs.map(
           doc => ({
+            id: doc.id,
             ...doc.data()
           })
         )
@@ -35,15 +36,12 @@ const Admin = props => {
     <div>
       <h1>Administrador</h1>
       <ul>
-      {users.map(user =>
-        (
-          <li >
-            <h3>User: {user.uid}</h3>
+        {users.map(user =>(
+          <li key={user.id}>
             <h5>Email: {user.nombre}</h5>
             <h5>UserName: {user.apellido}</h5>
           </li>
-        )
-      )}
+        ))}
       </ul>
 
       <AuthUserContext.Consumer>
